@@ -1139,9 +1139,9 @@ Certificat conforme aux directives OMS IRS 2026 et aux normes SAG AshantiGold.
                   {/* Cover Header - Exactly 40px from top, 50px from sides */}
                   <div className="relative z-10 flex items-center justify-between border-b border-white/20 pb-4">
                     <div className="flex items-center gap-3.5">
-                      <div className="w-12 h-12 rounded-xl bg-white/10 backdrop-blur-md border border-white/30 flex items-center justify-center text-2xl shadow-lg">
-                        
-                      </div>
+                      <div className="w-12 h-12 flex items-center justify-center overflow-hidden">
+  <img src="public/assets/images/sag.jpg" alt="Logo" className="w-full h-full object-contain" />
+</div>
                       <div>
                         <div className="text-xs font-extrabold uppercase tracking-widest text-emerald-400 font-mono">
                           HÔPITAL DE KORON · SAG SIGUIRI
