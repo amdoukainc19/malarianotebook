@@ -1,0 +1,212 @@
+@import "tailwindcss";
+
+@layer base {
+  body {
+    font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+  }
+  
+  .font-mono-numbers {
+    font-family: 'JetBrains Mono', monospace;
+    font-variant-numeric: tabular-nums;
+  }
+}
+
+/* Fluid module & button loading effects */
+@keyframes fluid-shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+.animate-fluid-shimmer {
+  background: linear-gradient(90deg, rgba(255,255,255,0) 0%, rgba(255,255,255,0.2) 50%, rgba(255,255,255,0) 100%);
+  background-size: 200% 100%;
+  animation: fluid-shimmer 1.8s infinite;
+}
+
+@keyframes tag-pulse-gold {
+  0%, 100% {
+    box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.4);
+  }
+  50% {
+    box-shadow: 0 0 0 6px rgba(16, 185, 129, 0);
+  }
+}
+
+.animate-tag-100 {
+  animation: tag-pulse-gold 2s infinite ease-in-out;
+}
+
+/* Pulsing radar marker beacon for satellite map view */
+@keyframes beacon-pulse {
+  0% {
+    transform: scale(0.7);
+    opacity: 0.95;
+  }
+  60% {
+    transform: scale(2.6);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(2.6);
+    opacity: 0;
+  }
+}
+
+.custom-pulse-marker {
+  position: relative;
+  width: 26px;
+  height: 26px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.custom-pulse-marker .pulse-beacon {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border-radius: 9999px;
+  animation: beacon-pulse 2s cubic-bezier(0.1, 0.7, 0.3, 1) infinite;
+  pointer-events: none;
+}
+
+.custom-pulse-marker .pulse-core {
+  position: relative;
+  width: 14px;
+  height: 14px;
+  border-radius: 9999px;
+  border: 2px solid #ffffff;
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.75), 0 0 4px rgba(255, 255, 255, 0.5);
+  transition: transform 0.2s ease;
+}
+
+.custom-pulse-marker:hover .pulse-core {
+  transform: scale(1.3);
+}
+
+.custom-pulse-marker.marker-selected .pulse-core {
+  width: 18px;
+  height: 18px;
+  border-width: 3px;
+  border-color: #fef08a;
+  box-shadow: 0 0 14px #fbbf24, 0 0 6px rgba(0, 0, 0, 0.9);
+}
+
+/* Tactical War Satellite Radar Sweep Animation */
+@keyframes radar-sweep {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.radar-sweep-beam {
+  animation: radar-sweep 4s linear infinite;
+  transform-origin: center center;
+}
+
+/* Military Scanlines Effect */
+.military-scanlines {
+  background: linear-gradient(
+    rgba(18, 16, 16, 0) 50%, 
+    rgba(0, 0, 0, 0.25) 50%
+  ), linear-gradient(
+    90deg,
+    rgba(255, 0, 0, 0.03),
+    rgba(0, 255, 0, 0.01),
+    rgba(0, 0, 255, 0.03)
+  );
+  background-size: 100% 3px, 6px 100%;
+}
+
+/* Tactical Target Lock Pulsing */
+@keyframes target-lock-pulse {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 0.9;
+  }
+  50% {
+    transform: scale(1.08);
+    opacity: 1;
+  }
+}
+
+.animate-target-lock {
+  animation: target-lock-pulse 1.2s ease-in-out infinite;
+}
+
+/* Tactical Filter Modes for Leaflet Container */
+.map-filter-flir {
+  filter: sepia(100%) hue-rotate(75deg) saturate(320%) contrast(140%) brightness(0.9) !important;
+}
+
+.map-filter-thermal {
+  filter: contrast(180%) saturate(240%) hue-rotate(190deg) !important;
+}
+
+/* Multi-page A4 Report Layout Rules */
+@page {
+  size: A4 portrait;
+  margin: 0;
+}
+
+.a4-page,
+.a4-page-cover {
+  width: 210mm;
+  min-height: 297mm;
+  height: 297mm;
+  max-height: 297mm;
+  padding: 40px 50px !important; /* ~2 cm uniform internal margin on all sides */
+  margin: 0 auto 24px auto;
+  background: white;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  box-sizing: border-box;
+  page-break-after: always;
+  break-after: page;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+@media print {
+  @page {
+    size: A4 portrait;
+    margin: 0;
+  }
+  body {
+    background-color: white !important;
+    color: black !important;
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+  .no-print {
+    display: none !important;
+  }
+  .print-only {
+    display: block !important;
+  }
+  .a4-page, .a4-page-cover {
+    width: 210mm !important;
+    min-height: 297mm !important;
+    height: 297mm !important;
+    max-height: 297mm !important;
+    padding: 40px 50px !important;
+    margin: 0 !important;
+    box-shadow: none !important;
+    page-break-after: always !important;
+    break-after: page !important;
+  }
+  .a4-page:last-child {
+    page-break-after: avoid !important;
+    break-after: avoid !important;
+  }
+}
